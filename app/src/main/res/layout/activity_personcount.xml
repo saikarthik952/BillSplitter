@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".personcount">
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:title="Split It"
+        android:background="@color/colorPrimary"
+        android:titleTextColor="#ffffff"></Toolbar>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Enter No of Persons less than 10"
+        android:id="@+id/personcount"
+       android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:background="@drawable/btn_border"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/next"
+        android:layout_margin="30dp"
+        android:layout_below="@+id/personcount"
+        android:background="@color/colorPrimary"/>
+</RelativeLayout>
