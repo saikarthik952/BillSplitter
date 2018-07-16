@@ -198,7 +198,7 @@ public class SplittingActivity extends AppCompatActivity {
                         Log.e("am", "onClick: "+ am);
                         total+=am;
 
-                        Log.e("total", "onClick: "+ total);
+                       Toast.makeText(SplittingActivity.this,"The Biil for "+persond[k]+" is "+total,Toast.LENGTH_SHORT).show();
                         }
 
 
