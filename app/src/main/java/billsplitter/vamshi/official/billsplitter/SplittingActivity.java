@@ -185,7 +185,7 @@ public class SplittingActivity extends AppCompatActivity {
                                     Log.e("Div", "onClick: "+div);
                                     break;
                                 }
-                              else  if(splitmatrix[h][r]==1)
+                              else  if(splitmatrix[h][r]==1&& splitmatrix[k][r]!=0)
                                 {
                                     Log.e("Div", "onClick: "+div);
                                     div++;
