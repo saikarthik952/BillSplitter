@@ -170,6 +170,8 @@ public class SplittingActivity extends AppCompatActivity {
                         weights[p][o]=0;
                 Log.e("Matrix", "onClick: "+ Arrays.deepToString(splitmatrix));
                 int h;
+
+                //TODO Check there is BUG in this LOOP !!!!!
                 for(int k=0;k<persond.length;k++)
                 {
                     div=0;
@@ -190,8 +192,9 @@ public class SplittingActivity extends AppCompatActivity {
                                     weights[k][r]=div;
                                 }
 
+//TODO Calculate the Share and store in Double[] finalmatrix variable
 
-
+//TODO ADD Intent For Result Activity
                         }
 
 

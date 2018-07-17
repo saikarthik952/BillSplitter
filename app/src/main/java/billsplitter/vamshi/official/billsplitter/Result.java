@@ -89,6 +89,7 @@ public class Result extends AppCompatActivity {
             t2v.setText(persond[i]);
             t2v.setTextColor(Color.BLACK);
             t2v.setGravity(Gravity.CENTER);
+//TODO Display Shared Amount HERE!
 
 
                 t2v.setGravity(Gravity.CENTER);
