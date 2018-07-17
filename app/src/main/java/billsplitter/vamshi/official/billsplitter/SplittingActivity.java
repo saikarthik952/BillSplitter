@@ -42,13 +42,13 @@ public class SplittingActivity extends AppCompatActivity {
     int columnToBeUsed = 0;
     double columnDivision;
     int div=0;
-    int total=0;
+    Double total=0.0;
     Double am;
     CheckBox[] allcheckbx;
     String[] persond;
     int[][] splitmatrix;
     int[][] weights;
-    Double[] finalmatrix;
+    double[] finalmatrix;
     long profcount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,7 @@ public class SplittingActivity extends AppCompatActivity {
         itemdetails=db.hubretreive();
         showbill=findViewById(R.id.showbill);
         weights = new int[persond.length][itemdetails.size()];
+        finalmatrix =new double[persond.length];
         init();
     }
     public void init()
@@ -143,6 +144,10 @@ public class SplittingActivity extends AppCompatActivity {
         showbill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(int k=0;k<persond.length;k++) {
+                finalmatrix[k]=0.0;
+                }
+
                 flag=0;
                 for(int k=0;k<persond.length;k++)
                 {
@@ -180,20 +185,37 @@ public class SplittingActivity extends AppCompatActivity {
                         div=0;
                         for(h=0;h<persond.length;h++)
                         {
+                               if(splitmatrix[k][r]==0)
+                                   break;
                                 if(splitmatrix[h][r]==0)
                                 {
-                                    Log.e("Div", "onClick: "+div);
-                                    break;
+                                    continue;
                                 }
                               else  if(splitmatrix[h][r]==1&& splitmatrix[k][r]!=0)
                                 {
-                                    Log.e("Div", "onClick: "+div);
+
                                     div++;
                                     weights[k][r]=div;
+
                                 }
 
 //TODO Calculate the Share and store in Double[] finalmatrix variable
+                            for(int q=0;q<persond.length;q++) {
+                                    finalmatrix[q]=0.0;
+                              total=0.0;
+                                for (int w = 0; w < itemdetails.size(); w++) {
+                                    if(weights[q][w]==0)
+                                    {
+                                       total+=0;
+                                    }else {
 
+                                        total += (Double.parseDouble(itemdetails.get(w).getItemcost()) / weights[q][w]);
+                                    }
+                                }
+                                finalmatrix[q]=total;
+                            }
+
+                            Log.e("FinalMatrix", "onClick: "+ Arrays.deepToString(new double[][]{finalmatrix}));
 //TODO ADD Intent For Result Activity
                         }
 
@@ -204,6 +226,10 @@ public class SplittingActivity extends AppCompatActivity {
 
                     Log.e("am", "onClick: "+ Arrays.deepToString(weights));
                 }
+                Intent i = new Intent(SplittingActivity.this,Result.class);
+
+                     i.putExtra("final",finalmatrix);
+                     startActivity(i);
 
 
             }

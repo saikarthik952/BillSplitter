@@ -1,5 +1,6 @@
 package billsplitter.vamshi.official.billsplitter;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -24,12 +25,15 @@ public class Result extends AppCompatActivity {
     Set<String> persondata;
     List<itemdetails> itemdetails;
     int count;
+    double[] share;
     String[] persond;
-
+Bundle b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        b=getIntent().getExtras();
+
         mshared = getSharedPreferences("personData", MODE_PRIVATE);
         db = new Database(Result.this);
         count = mshared.getInt("personcount", 0);
@@ -37,9 +41,12 @@ public class Result extends AppCompatActivity {
         persond = persondata.toArray(new String[persondata.size()]);
         itemdetails = new ArrayList<>();
         itemdetails = db.hubretreive();
+        share= new double[persond.length];
+      share= b.getDoubleArray("final");
         init();
     }
 
+    @SuppressLint("SetTextI18n")
     void init()
     {
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
@@ -73,7 +80,8 @@ public class Result extends AppCompatActivity {
         for (int i = 0; i < persond.length; i++) {
             TableRow tbrow = new TableRow(this);
             TextView t1v = new TextView(this);
-            t1v.setText(persond[i]);
+            t1v.setText(  persond[i]);
+
             t1v.setTextColor(Color.BLACK);
             t1v.setGravity(Gravity.CENTER);
             t1v.setTextAppearance(Typeface.BOLD);
@@ -86,7 +94,7 @@ public class Result extends AppCompatActivity {
             tbrow.addView(t1v);
 
                 TextView t2v = new TextView(this);
-            t2v.setText(persond[i]);
+            t2v.setText(""+share[i]);
             t2v.setTextColor(Color.BLACK);
             t2v.setGravity(Gravity.CENTER);
 //TODO Display Shared Amount HERE!

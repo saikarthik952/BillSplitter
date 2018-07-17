@@ -35,12 +35,15 @@ public class personcount extends AppCompatActivity {
         setContentView(R.layout.activity_personcount);
         personcount=findViewById(R.id.personcount);
         mshared= getSharedPreferences("personData",MODE_PRIVATE);
+
         editor= mshared.edit();
+
         next=findViewById(R.id.next);
      spersondetails = new HashSet<String>();
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editor.clear();
             count=Integer.parseInt(personcount.getText().toString().trim());
               editor.putInt("personcount",count);
 
