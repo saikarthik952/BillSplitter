@@ -172,7 +172,7 @@ public class SplittingActivity extends AppCompatActivity {
                 int h;
                 for(int k=0;k<persond.length;k++)
                 {
-
+                    div=0;
                     for(int r=0;r<itemdetails.size();r++)
                     {
                         div=0;
@@ -180,10 +180,12 @@ public class SplittingActivity extends AppCompatActivity {
                         {
                                 if(splitmatrix[h][r]==0)
                                 {
+                                    Log.e("Div", "onClick: "+div);
                                     break;
                                 }
                               else  if(splitmatrix[h][r]==1)
                                 {
+                                    Log.e("Div", "onClick: "+div);
                                     div++;
                                     weights[k][r]=div;
                                 }
