@@ -47,6 +47,7 @@ public class SplittingActivity extends AppCompatActivity {
     CheckBox[] allcheckbx;
     String[] persond;
     int[][] splitmatrix;
+    int[][] weights;
     Double[] finalmatrix;
     long profcount;
     @Override
@@ -62,6 +63,7 @@ public class SplittingActivity extends AppCompatActivity {
         profcount=db.getProfilesCount();
         itemdetails=db.hubretreive();
         showbill=findViewById(R.id.showbill);
+        weights = new int[persond.length][itemdetails.size()];
         init();
     }
     public void init()
@@ -163,45 +165,39 @@ public class SplittingActivity extends AppCompatActivity {
 
 
                 }
+                for(int p=0;p<persond.length;p++)
+                    for (int o=0;o<itemdetails.size();o++)
+                        weights[p][o]=0;
                 Log.e("Matrix", "onClick: "+ Arrays.deepToString(splitmatrix));
                 int h;
                 for(int k=0;k<persond.length;k++)
                 {
-                    total=0;
+
                     for(int r=0;r<itemdetails.size();r++)
                     {
                         div=0;
-                        h=0;
-                        Log.e("personlength", "onClick: "+ persond.length);
-                        while(h<persond.length)
+                        for(h=0;h<persond.length;h++)
                         {
-                            if(splitmatrix[h][r]==1 && splitmatrix[k][r]!=0)
-                            {
-                                div++;
-                                h++;
-                                Log.e("H", "onClick: "+ h);
-                            }
-                            else if(splitmatrix[h][r]==0)
-                            {
-                                Log.e("Div0", "onClick: "+ div);
-                                h++;
-                            }
+                                if(splitmatrix[h][r]==0)
+                                {
+                                    break;
+                                }
+                              else  if(splitmatrix[h][r]==1)
+                                {
+                                    div++;
+                                    weights[k][r]=div;
+                                }
 
-                            Log.e("DIV1", "onClick: "+ div);
-                        }
-                        if(div==0)
-                        {
-                            am=0.0;
-                        }else {
-                            am = (Double) Double.parseDouble(itemdetails.get(r).getItemcost()) / div;
-                        }
-                        Log.e("am", "onClick: "+ am);
-                        total+=am;
 
-                       Toast.makeText(SplittingActivity.this,"The Biil for "+persond[k]+" is "+total,Toast.LENGTH_SHORT).show();
+
                         }
 
 
+
+
+                        }
+
+                    Log.e("am", "onClick: "+ Arrays.deepToString(weights));
                 }
 
 
