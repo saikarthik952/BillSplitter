@@ -61,7 +61,7 @@ public class personcount extends AppCompatActivity {
                 {
                     tv1=new EditText(personcount.this); //
                     tv1.setId(i);
-            Toast.makeText(personcount.this,String.valueOf(tv1.getId()),Toast.LENGTH_SHORT).show();
+           // Toast.makeText(personcount.this,String.valueOf(tv1.getId()),Toast.LENGTH_SHORT).show();
                     tv1.setHint("Person " + (i+1));
                    l1.addView(tv1);
 
